@@ -12,14 +12,15 @@ install_version() {
   _version=$1
   echo 开始下载 v${_version}……
   _version=${_version//~b/%25b}
+  zipPath="/tmp/${_version}.zip"
   # 下载压缩包
-  curl -L -o ${_version}.zip https://github.com/TozyZuo/OpenIn.Public/releases/download/v${_version}/${app_full_name}.zip
+  curl -L -o ${zipPath} https://github.com/TozyZuo/OpenIn.Public/releases/download/v${_version}/${app_full_name}.zip
   if [ 0 -eq $? ]; then
     echo 下载完成
     # 解压为同名文件夹
-    unzip -o -q ${_version}.zip -d /Applications
+    unzip -o -q ${zipPath} -d /Applications
     # 删除压缩包
-    rm ${_version}.zip
+    rm ${zipPath}
     echo 安装完成
     open $app_path --args "-s"
   else
