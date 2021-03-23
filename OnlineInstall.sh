@@ -37,7 +37,7 @@ fi
 
 if [ -z $latest_version ]; then
   echo 正在检查新版本……
-  latest_version=$(curl -I -s ${app_release_path} | grep Location | sed -n 's/.*\/v\(.*\)/\1/p')
+  latest_version=$(curl -I -s ${app_release_path} | grep -i location: | sed -n 's/.*\/v\(.*\)/\1/p')
   latest_version=${latest_version//$'\r'/}
   if [ -z "$latest_version" ]; then
     echo 检查新版本时失败
